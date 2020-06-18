@@ -58,6 +58,7 @@ int main() {
 				if (tomato[nx][ny] == 0 && visited[nx][ny] == false) {
 					visited[nx][ny]++;
 					tomato[nx][ny] = 1;
+					que.push(make_pair(nx, ny));
 					day++;
 				}
 			
