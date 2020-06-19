@@ -1,16 +1,16 @@
 /*
-¿¬°á¿ä¼ÒÀÇ °¹¼ö
+ì—°ê²°ìš”ì†Œì˜ ê°¯ìˆ˜
 
-¿¬°á¿ä¼ÒÀÇ °¹¼ö¸¦ Ãâ·ÂÇÏ´Â ¹®Á¦
+ì—°ê²°ìš”ì†Œì˜ ê°¯ìˆ˜ë¥¼ ì¶œë ¥í•˜ëŠ” ë¬¸ì œ
 */
 #include <iostream>
 #include <vector>
 #include <cstring>
 using namespace std;
 int N, M;
-vector<int> vec[1001];//½Ç»ç¿ë ÀÎµ¦½º´Â 1~N
-bool check[1001];//½Ç»ç¿ë ÀÎµ¦½º´Â 1~N
-bool check_buf[1001];//½Ç»ç¿ë ÀÎµ¦½º´Â 1~N
+vector<int> vec[1001];//ì‹¤ì‚¬ìš© ì¸ë±ìŠ¤ëŠ” 1~N
+bool check[1001];//ì‹¤ì‚¬ìš© ì¸ë±ìŠ¤ëŠ” 1~N
+bool check_buf[1001];//ì‹¤ì‚¬ìš© ì¸ë±ìŠ¤ëŠ” 1~N
 int cnt = 0;
 void In() {
 	cin >> N >> M;
@@ -21,10 +21,10 @@ void In() {
 	}
 }
 void dfs(int node) {
-	//ÁøÇà
+	//ì§„í–‰
 	for (int tp = 0; tp < vec[node].size(); tp++) {
 		int next = vec[node][tp];
-		if (check_buf[next] == true)//»çÀÌÅ¬¹æÁö
+		if (check_buf[next] == true)//ì‚¬ì´í´ë°©ì§€
 			continue;
 		check_buf[next] = true;
 		dfs(next);
@@ -34,7 +34,7 @@ int main() {
 	ios_base::sync_with_stdio(false);//284ms->88ms
 	In();
 
-	//¿¹¿Ü°æ¿ì
+	//ì˜ˆì™¸ê²½ìš°
 	if (M == 0) { 
 		cout << N;
 		return 0;
@@ -44,8 +44,8 @@ int main() {
 		vector<int> buf;
 
 		if (check[tp] == false) {
-			check_buf[tp] = true;//¹æ¹®ÇßÀ½À¸·Î Ç¥½Ã
-			dfs(tp);  //check_buf¿¡¼­  tp¿¡ ¼ÓÇØÀÖ´Â ¿¬°á¿ä¼Ò¸¦ ÀüºÎ true·Î ¹Ù²ãÁÜ
+			check_buf[tp] = true;//ë°©ë¬¸í–ˆìŒìœ¼ë¡œ í‘œì‹œ
+			dfs(tp);  //check_bufì—ì„œ  tpì— ì†í•´ìˆëŠ” ì—°ê²°ìš”ì†Œë¥¼ ì „ë¶€ trueë¡œ ë°”ê¿”ì¤Œ
 			
 			bool flag = false;
 			for (int tp2 = 1; tp2 <= N; tp2++) {
@@ -55,16 +55,16 @@ int main() {
 					buf.push_back(tp2);
 			}
 			
-			if (flag == false)  //°ãÄ¡´Â°Ô ¾øÀ»°æ¿ì¿¡
+			if (flag == false)  //ê²¹ì¹˜ëŠ”ê²Œ ì—†ì„ê²½ìš°ì—
 				cnt++;
 
 		
 			vector<int>::iterator iter;
-			for (iter = buf.begin(); iter != buf.end(); iter++) //check °ªÀÌ renewalµÊ
+			for (iter = buf.begin(); iter != buf.end(); iter++) //check ê°’ì´ renewalë¨
 				check[(*iter)] = true;
 			
 
-			//ÃÊ±âÈ­
+			//ì´ˆê¸°í™”
 			memset(check_buf, 0, sizeof(check_buf));
 		}
 		
