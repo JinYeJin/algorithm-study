@@ -1,7 +1,7 @@
 /*
-Àû·Ï»ö¾à ¹®Á¦
+ì ë¡ìƒ‰ì•½ ë¬¸ì œ
 
-Àû·Ï»ö¾àÀÌ ¾Æ´Ñ »ç¶÷ÀÌ ºÃÀ» ¶§ÀÇ ±¸¿ªÀÇ °³¼ö¿Í Àû·Ï»ö¾àÀÎ »ç¶÷ÀÌ ºÃÀ» ¶§ÀÇ ±¸¿ªÀÇ ¼ö¸¦ °ø¹éÀ¸·Î ±¸ºĞÇØ Ãâ·Â
+ì ë¡ìƒ‰ì•½ì´ ì•„ë‹Œ ì‚¬ëŒì´ ë´¤ì„ ë•Œì˜ êµ¬ì—­ì˜ ê°œìˆ˜ì™€ ì ë¡ìƒ‰ì•½ì¸ ì‚¬ëŒì´ ë´¤ì„ ë•Œì˜ êµ¬ì—­ì˜ ìˆ˜ë¥¼ ê³µë°±ìœ¼ë¡œ êµ¬ë¶„í•´ ì¶œë ¥
 */
 #include <iostream>
 #include <queue>
@@ -24,7 +24,7 @@ void In() {
 		{
 			cin >> a;
 			ary1[i][j] = a;
-			if (a == 'G')//G¸¦ ÀüºÎ R·Î ÅëÀÏ
+			if (a == 'G')//Gë¥¼ ì „ë¶€ Rë¡œ í†µì¼
 				ary2[i][j] = 'R';
 			else
 				ary2[i][j] = a;
@@ -40,7 +40,7 @@ bool isinside(int i, int j)
 void bfs(int i ,int j,char ary[][100],bool check[][100]) {
 	queue<pair<int, int>> qu;
 	qu.push(pair<int, int>(i, j));
-	check[i][j] = true;//¹æ¹® ÇßÀ½À¸·Î Ç¥½Ã
+	check[i][j] = true;//ë°©ë¬¸ í–ˆìŒìœ¼ë¡œ í‘œì‹œ
 
 	while (!qu.empty()) {
 		int curi = qu.front().first;
@@ -50,9 +50,9 @@ void bfs(int i ,int j,char ary[][100],bool check[][100]) {
 			int nexti = curi + dist[tp][0];
 			int nextj = curj + dist[tp][1];
 
-			//¹üÀ§¾È¿¡ ÀÖ´Â°¡, Ã³À½¹æ¹®ÇÏ´Â °÷ÀÎ°¡ ,  (curi,curj)¿¡ ¼ÓÇØÀÖ´Â °ª°ú °°Àº °ªÀÎ°¡
+			//ë²”ìœ„ì•ˆì— ìˆëŠ”ê°€, ì²˜ìŒë°©ë¬¸í•˜ëŠ” ê³³ì¸ê°€ ,  (curi,curj)ì— ì†í•´ìˆëŠ” ê°’ê³¼ ê°™ì€ ê°’ì¸ê°€
 			if (isinside(nexti, nextj) && check[nexti][nextj] == false && ary[curi][curj] == ary[nexti][nextj]) {
-				check[nexti][nextj] = true;//ÀÌ¹Ì ¹æ¹® ÇßÀ½À¸·Î Ç¥½Ã
+				check[nexti][nextj] = true;//ì´ë¯¸ ë°©ë¬¸ í–ˆìŒìœ¼ë¡œ í‘œì‹œ
 				qu.push(pair<int,int>(nexti,nextj));
 			}
 			
