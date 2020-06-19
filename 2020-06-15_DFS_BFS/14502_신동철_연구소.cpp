@@ -1,6 +1,6 @@
 /*
-¿¬±¸¼Ò ¹®Á¦
-º®À» Á¤È®È÷ 3°³ ¼¼¿ì°í ,  ¾ÈÀü¿µ¿ªÅ©±âÀÇ ÃÖ´ñ°ªÀ» ±¸ÇÏ¶ó.
+ì—°êµ¬ì†Œ ë¬¸ì œ
+ë²½ì„ ì •í™•íˆ 3ê°œ ì„¸ìš°ê³  ,  ì•ˆì „ì˜ì—­í¬ê¸°ì˜ ìµœëŒ“ê°’ì„ êµ¬í•˜ë¼.
 */
 #include <iostream>
 #include <vector>
@@ -8,14 +8,14 @@
 #include <cstring>
 using namespace std;
 
-int N, M; //¼¼·Î , °¡·Î Å©±â
+int N, M; //ì„¸ë¡œ , ê°€ë¡œ í¬ê¸°
 int ary[8][8];
-vector<pair<int, int>> wall_vec;//º®À» ¼¼¿ï°æ¿ì º®ÀÇ ÁÂÇ¥
+vector<pair<int, int>> wall_vec;//ë²½ì„ ì„¸ìš¸ê²½ìš° ë²½ì˜ ì¢Œí‘œ
 vector<pair<int, int>> virus_vec;
-bool map[8][8];//ÀÌ¹Ì ¹æ¹®ÇÑ °÷ÀÎÁö ÆÇ´ÜÇÏ´Â map .  ÃÊ±âÈ­´Â false    false ¹æ¹®¾ÈÇÑ°÷
+bool map[8][8];//ì´ë¯¸ ë°©ë¬¸í•œ ê³³ì¸ì§€ íŒë‹¨í•˜ëŠ” map .  ì´ˆê¸°í™”ëŠ” false    false ë°©ë¬¸ì•ˆí•œê³³
 int maxv = 0;
 int dist[4][2] = { {1,0},{-1,0},{0,1},{0,-1} };
-int minv = 64; //BFSÈ¿À²¼ºÀ» ¿Ã¸®±â À§ÇÔ
+int minv = 64; //BFSíš¨ìœ¨ì„±ì„ ì˜¬ë¦¬ê¸° ìœ„í•¨
 int wall_num = 0;
 void In() {
 	cin >> N >> M;
@@ -42,12 +42,12 @@ int bfs() {
 	int cnt2 = 0;
 	bool flag_buf = false;
 
-	//ary¸¦ ÀÓ½Ã·Î º¯°æ
+	//aryë¥¼ ì„ì‹œë¡œ ë³€ê²½
 	vector<pair<int, int>>::iterator iter;
 	for (iter = wall_vec.begin(); iter != wall_vec.end(); iter++)
 		ary[(*iter).first][(*iter).second] = 1;
 
-	//¸¸µç º® ¾È¿¡¼­ ¹ÙÀÌ·¯½º°¡ ÆÛÁö°ÔÇÏ±â	
+	//ë§Œë“  ë²½ ì•ˆì—ì„œ ë°”ì´ëŸ¬ìŠ¤ê°€ í¼ì§€ê²Œí•˜ê¸°	
 	queue<pair<int, int>> qu;
 	for (iter = virus_vec.begin(); iter != virus_vec.end(); iter++) {
 		qu.push(pair<int, int>((*iter).first, (*iter).second));
@@ -60,44 +60,44 @@ int bfs() {
 		int curj = qu.front().second;
 		qu.pop();
 
-		//Áß°£Å»Ãâ¹®
+		//ì¤‘ê°„íƒˆì¶œë¬¸
 		if (cnt2 >= minv) {
 			flag_buf = true;
 			break;
 		}
 
-		//4¹æÇâ
+		//4ë°©í–¥
 		for (int tp = 0; tp < 4; tp++) {
 			int nexti = curi + dist[tp][0];
 			int nextj = curj + dist[tp][1];
 
-			//¹üÀ§ ¾È¿¡ ÀÖ´ÂÁö ,°¥·Á°íÇÏ´Â°÷ÀÌ 0ÀÎÁö , ¹æ¹®ÇÑ Àû(map) ÀÌ ¾ø´ÂÁö
+			//ë²”ìœ„ ì•ˆì— ìˆëŠ”ì§€ ,ê°ˆë ¤ê³ í•˜ëŠ”ê³³ì´ 0ì¸ì§€ , ë°©ë¬¸í•œ ì (map) ì´ ì—†ëŠ”ì§€
 			if (isinside(nexti, nextj) && ary[nexti][nextj] == 0 && map[nexti][nextj] == false)
 			{
-				map[nexti][nextj] = true;//¹æ¹®ÇÔÀ¸·Î Ç¥½Ã
+				map[nexti][nextj] = true;//ë°©ë¬¸í•¨ìœ¼ë¡œ í‘œì‹œ
 				qu.push(pair<int, int>(nexti, nextj));
 				cnt2++;
 			}
 		}
 	}
 
-	//bfs Áß°£Å»Ãâ¹®À» À§ÇÑ °»½Å¸í·É¾î
+	//bfs ì¤‘ê°„íƒˆì¶œë¬¸ì„ ìœ„í•œ ê°±ì‹ ëª…ë ¹ì–´
 	if (cnt2 < minv)
 		minv = cnt2;
 
 	int cnt = 0;
 	if (flag_buf == false) 
-		cnt = N * M - (cnt2 + wall_num + 3);//ÃÑ¿µ¿ª°¹¼ö-  (ÆÛÁø¹ÙÀÌ·¯½º¼ö + ±âÁ¸¿¡ÀÖ´ø º®ÀÇ ¼ö + 3)
+		cnt = N * M - (cnt2 + wall_num + 3);//ì´ì˜ì—­ê°¯ìˆ˜-  (í¼ì§„ë°”ì´ëŸ¬ìŠ¤ìˆ˜ + ê¸°ì¡´ì—ìˆë˜ ë²½ì˜ ìˆ˜ + 3)
 	
-	//ary¸¦ ´Ù½Ã º¹±¸½ÃÅ°°í ,   mapÀ» false·Î ÃÊ±âÈ­½ÃÅ°±â
+	//aryë¥¼ ë‹¤ì‹œ ë³µêµ¬ì‹œí‚¤ê³  ,   mapì„ falseë¡œ ì´ˆê¸°í™”ì‹œí‚¤ê¸°
 	for (iter = wall_vec.begin(); iter != wall_vec.end(); iter++)
 		ary[(*iter).first][(*iter).second] = 0;
 	memset(map, 0, sizeof(map));
 
 	return cnt;
 }
-void dfs() {  //º®3°³¸¦ ¸¸µå´Â ¸ğµç°æ¿ì ¸¸µé±â
-	//º®ÀÌ 3°³°¡ µÇ¸é ¸¸Á·. bfs ÁøÇà .
+void dfs() {  //ë²½3ê°œë¥¼ ë§Œë“œëŠ” ëª¨ë“ ê²½ìš° ë§Œë“¤ê¸°
+	//ë²½ì´ 3ê°œê°€ ë˜ë©´ ë§Œì¡±. bfs ì§„í–‰ .
 	if ((int)wall_vec.size() == 3) {
 		
 
@@ -112,16 +112,16 @@ void dfs() {  //º®3°³¸¦ ¸¸µå´Â ¸ğµç°æ¿ì ¸¸µé±â
 	int j = 0;
 	bool flag = false;
 	if (wall_vec.size() != 0) {
-		if (wall_vec.back().second + 1 < M)//¿­ÀÌ ¹üÀ§ ¾È¿¡ ÀÖ´Â°¡      
+		if (wall_vec.back().second + 1 < M)//ì—´ì´ ë²”ìœ„ ì•ˆì— ìˆëŠ”ê°€      
 			j = wall_vec.back().second + 1;
-		else//¿­ÀÌ ¹üÀ§ ¹ÛÀÎ°¡
+		else//ì—´ì´ ë²”ìœ„ ë°–ì¸ê°€
 		{
 			j = 0;
 			i = wall_vec.back().first + 1;
 		}
 		flag = true;
 	}
-	//ÁøÇà 
+	//ì§„í–‰ 
 	for (; i < N; i++) {
 		if (flag == false) {
 			j = 0;
@@ -136,7 +136,7 @@ void dfs() {  //º®3°³¸¦ ¸¸µå´Â ¸ğµç°æ¿ì ¸¸µé±â
 				wall_vec.push_back(pair<int, int>(i, j));
 				dfs();
 
-				//º¹¿ø
+				//ë³µì›
 				wall_vec.pop_back();
 			}
 		}
