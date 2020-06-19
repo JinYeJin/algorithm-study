@@ -1,13 +1,13 @@
-//BFS·Î Ç°
-//ÀÌÀü Åä¸¶Åä ¹®Á¦¶û °ÅÀÇ À¯»ç.
+//BFSë¡œ í’ˆ
+//ì´ì „ í† ë§ˆí†  ë¬¸ì œëž‘ ê±°ì˜ ìœ ì‚¬.
 #include <iostream>
 #include <queue>
 #include <cstring>
 using namespace std;
 
-int M, N, H;  // °¡·ÎÄ­ÀÇ¼ö , ¼¼·ÎÄ­ÀÇ¼ö , »óÀÚ³ôÀÌ¼ö 
-int tomato_box[100][100][100];//3Â÷¿ø¹è¿­     °¢ ÀÎµ¦½º´Â  (»óÀÚ³ôÀÌ,Çà,¿­)À» ÀÇ¹Ì 
-int tomato_map[100][100][100];//ÀÌ¹Ì ÀÍÀºÅä¸¶Åä¿Í ºñ¾îÀÖ´Â À§Ä¡´Â 0À¸·Î Ç¥½ÃÇÔ.   -1Àº ´úÀÍÀº Åä¸¶Åä·Î½á Å½»ö°¡´ÉÇÑ°÷ÀÌ°í , ±×¿ÜÀÇ °ªÀº ÀÌ¹Ì Å½»öÇÑ °÷À¸·Î Ä§ 
+int M, N, H;  // ê°€ë¡œì¹¸ì˜ìˆ˜ , ì„¸ë¡œì¹¸ì˜ìˆ˜ , ìƒìžë†’ì´ìˆ˜ 
+int tomato_box[100][100][100];//3ì°¨ì›ë°°ì—´     ê° ì¸ë±ìŠ¤ëŠ”  (ìƒìžë†’ì´,í–‰,ì—´)ì„ ì˜ë¯¸ 
+int tomato_map[100][100][100];//ì´ë¯¸ ìµì€í† ë§ˆí† ì™€ ë¹„ì–´ìžˆëŠ” ìœ„ì¹˜ëŠ” 0ìœ¼ë¡œ í‘œì‹œí•¨.   -1ì€ ëœìµì€ í† ë§ˆí† ë¡œì¨ íƒìƒ‰ê°€ëŠ¥í•œê³³ì´ê³  , ê·¸ì™¸ì˜ ê°’ì€ ì´ë¯¸ íƒìƒ‰í•œ ê³³ìœ¼ë¡œ ì¹¨ 
 int dist[6][3] = { {0,1,0},{0,-1,0},{0,0,1},{0,0,-1},{1,0,0},{-1,0,0} };
 
 class cord {
@@ -18,7 +18,7 @@ public:
 	
 	cord(int h_,int i_, int j_) : h(h_),i(i_),j(j_)   {}
 };
-queue<cord> qu;//ÀÌ¹ÌÀÍÀº Åä¸¶Åä ÁÂÇ¥°¡ ¼±µÎ·Î µé¾î°¨.
+queue<cord> qu;//ì´ë¯¸ìµì€ í† ë§ˆí†  ì¢Œí‘œê°€ ì„ ë‘ë¡œ ë“¤ì–´ê°.
 
 void In() {
 	cin >> M >> N >> H;
@@ -62,7 +62,7 @@ void bfs() {
 			int nexti = curi + dist[tp][1];
 			int nextj = curj + dist[tp][2];
 
-			//¹üÀ§ ¾È¿¡ ÀÖ´Â°¡, Ã³À½°¡º¸´Â °÷ÀÎ°¡ , 
+			//ë²”ìœ„ ì•ˆì— ìžˆëŠ”ê°€, ì²˜ìŒê°€ë³´ëŠ” ê³³ì¸ê°€ , 
 			if ( isinside( nexth , nexti, nextj) && tomato_map[nexth][nexti][nextj] == -1 ) {
 				tomato_map[nexth][nexti][nextj] = tomato_map[curh][curi][curj] + 1;
 				qu.push(cord(nexth,nexti,nextj));
@@ -73,14 +73,14 @@ void bfs() {
 }
 int main()
 {
-	ios_base::sync_with_stdio(false);// 240ms-> 92ms ·Î °¨¼Ò
+	ios_base::sync_with_stdio(false);// 240ms-> 92ms ë¡œ ê°ì†Œ
 	memset(tomato_map, -1, sizeof(tomato_map));
 	In();
 	bfs();
 
-	//tomato_map ¿¡¼­ -1 ÀÌ ÀÖÀ¸¸é ,  -1 Ãâ·Â
-	//tomato_map ¿¡¼­ ÀüºÎ 0 ÀÌ¸é , 0Ãâ·Â
-	//±âº») tomato_map ¿¡¼­ °¡ÀåÅ« °ª Ãâ·Â
+	//tomato_map ì—ì„œ -1 ì´ ìžˆìœ¼ë©´ ,  -1 ì¶œë ¥
+	//tomato_map ì—ì„œ ì „ë¶€ 0 ì´ë©´ , 0ì¶œë ¥
+	//ê¸°ë³¸) tomato_map ì—ì„œ ê°€ìž¥í° ê°’ ì¶œë ¥
 	bool flag = false;
 	int maxv = 0;
 	for (int h = 0; h < H; h++)
