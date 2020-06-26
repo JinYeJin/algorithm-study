@@ -42,7 +42,7 @@ int upper_binary(int*arr, int target, int size) {
 }
  
 int main(void){
-    FILE *stream = freopen("S4\\4\\input\\1764_input.txt", "r", stdin);
+    FILE *stream = freopen("S4\\4\\input\\10816_input.txt", "r", stdin);
     if(!stream) perror("freopen");
 
     int N, M;
