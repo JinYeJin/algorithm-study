@@ -1,4 +1,4 @@
-// 
+// 런타임
 #include <iostream>
 #include <vector>
 using namespace std;
