@@ -42,3 +42,31 @@ int main() {
 	int ret = step(0, 0);
 	cout << ret;
 }
+
+/*
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int N, leftCard[2001], rightCard[2001], DP[2001][2001];
+int solution(int left, int right)
+{
+	// 카드 더미가 남아있지 않으면
+	if (left == N || right == N) return 0;
+	int &val = DP[left][right];
+	if (val != 0) return val;
+	
+	val = leftCard[left] > rightCard[right] ? max(val, solution(left, right + 1) + rightCard[right])  : max(solution(left + 1, right), solution(left + 1, right + 1));
+	return val;
+}
+int main()
+{
+	
+	cin >> N;
+	for (int i = 0; i < N; i++) cin >> leftCard[i];
+	for (int i = 0; i < N; i++) cin >> rightCard[i];
+    
+	cout << solution(0, 0);
+	return 0;
+}
+*/
