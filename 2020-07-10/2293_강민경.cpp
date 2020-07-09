@@ -1,4 +1,4 @@
-// 2293 
+// 2293 동전1
 #include <stdio.h>
 using namespace std;
 
