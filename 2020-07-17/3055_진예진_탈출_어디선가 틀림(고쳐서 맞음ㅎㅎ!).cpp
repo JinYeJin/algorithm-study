@@ -88,8 +88,9 @@ int main(){
         for(int j = 0; j < C; j++){
             scanf("%c", &map[i][j]);
 
-            if(map[i][j] == '*') water.push(Coord(i,j));
-            if(map[i][j] == 'S') hedgehog.push(Coord(i, j));
+            // 여기가 틀렸었음!! j, i 순서 조심하기!! 행렬 잘 생각하기
+            if(map[i][j] == '*') water.push(Coord(j, i));
+            if(map[i][j] == 'S') hedgehog.push(Coord(j, i));
         }
         scanf("\n");
     }
