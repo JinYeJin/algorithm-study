@@ -1,5 +1,3 @@
-**문제 : 16 팩토리얼이 나오기에 시간이 오바되는건 당연**
-```c++
 #include <stdio.h>
 #include <algorithm>
 #include <iostream>
@@ -42,6 +40,5 @@ int main(){
     cout << ans << "\n";
     return 0;
 }
+// 문제 : 16 팩토리얼이 나오기에 시간이 오바되는건 당연**
 
-
-```
