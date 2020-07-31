@@ -1,5 +1,3 @@
-https://www.acmicpc.net/problem/3109
-
 #include<iostream>
  
 #define MAX 10000
