@@ -5,15 +5,14 @@
 미완인 코드도 올려서 다 같이 공부해요! 벌금체크할 때 참고할 수 있도록 코드 완성여부만 추가로 적어주세요.
 
 
-
 ## 문제목록
 
-- [[백준 1654 랜선 자르기]](https://www.acmicpc.net/problem/1654)
-- [[백준 1695 팰린드롬 만들기]](https://www.acmicpc.net/problem/1695)
-- [[백준 2098 외판원 순회]](https://www.acmicpc.net/problem/2098)
-- [[백준 2613 숫자구슬]](https://www.acmicpc.net/problem/2613)
-- [[백준 3109 빵집]](https://www.acmicpc.net/problem/3109)
-- [[백준 9205 맥주마시면서 걸어가기]](https://www.acmicpc.net/problem/9205)
+- [[백준 1103 게임]](https://www.acmicpc.net/problem/1103)
+- [[백준 1967 트리의 지름]](https://www.acmicpc.net/problem/1967)
+- [[백준 2629 양팔저울]](https://www.acmicpc.net/problem/2629)
+- [[백준 5582 공통부분 문자열]](https://www.acmicpc.net/problem/5582)
+- [[백준 5719 거의 최단 경로]](https://www.acmicpc.net/problem/5719)
+- [[백준 16991 외판원 순회 3]](https://www.acmicpc.net/problem/16991)
 
 
 
