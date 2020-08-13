@@ -1,4 +1,4 @@
-# 2020-08-01 스터디
+# 2020-08-14 스터디
 
 **파일 올릴 때 <문제번호\_이름\_문제이름_코드완성여부(부분통과인 경우)> 형식으로 올려주세요.**
 
@@ -7,12 +7,12 @@
 
 ## 문제목록
 
-- [[백준 1103 게임]](https://www.acmicpc.net/problem/1103)
-- [[백준 1967 트리의 지름]](https://www.acmicpc.net/problem/1967)
-- [[백준 2629 양팔저울]](https://www.acmicpc.net/problem/2629)
-- [[백준 5582 공통부분 문자열]](https://www.acmicpc.net/problem/5582)
-- [[백준 5719 거의 최단 경로]](https://www.acmicpc.net/problem/5719)
-- [[백준 16991 외판원 순회 3]](https://www.acmicpc.net/problem/16991)
+- [[백준 1405 미친 로봇]](https://www.acmicpc.net/problem/1405)
+- [[백준 2225 합분해]](https://www.acmicpc.net/problem/2225)
+- [[백준 3006 터보소트]](https://www.acmicpc.net/problem/3006)
+- [[백준 3108 로고]](https://www.acmicpc.net/problem/3108)
+- [[백준 5525 IOIOI]](https://www.acmicpc.net/problem/5525)
+- [[백준 6087 레이저 통신]](https://www.acmicpc.net/problem/6087)
 
 
 
