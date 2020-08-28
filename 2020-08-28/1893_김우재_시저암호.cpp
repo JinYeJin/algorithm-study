@@ -5,6 +5,27 @@
 
 using namespace std;
 
+// abacaababa
+// a 랑 b랑 다른데 j는 증가안함
+// a 랑 a랑 같으므로 ++j됨
+// table[2] = 1;
+// j == 1 -> b i== 3 -> c 다르므로
+// j = table[0]의 값을 가짐 j = 0;
+// j == 0 i == 4 a == a 같으므로
+// j=1 이되고 table[4] == 1;
+// j == 1 i == 5 -> b 랑 a 다르므로
+// j == table[0] -> 0
+// j = 0, i == 6 -> aa 같으므로
+// j=1 table[i] =1;
+// j=1 i == 7 b==b 같으므로
+// table[7] = 2; j == 2
+// j=2 i == 8 a a 같으므로
+// table[8] = 3;
+// j= 3 -> c // i=9 == b 다르므로
+// j = table[3-1] -> j = 1;
+// patter[1] == pattern[9] 랑 같으면
+// 같다. ++J 를 해주기때문에 2가 된다.
+
 
 vector<int> makeTable(string pattern){
     int patternSize = pattern.size();
