@@ -13,7 +13,6 @@ struct Node{
     Node* right;
 };
 void make_segtree(Node* node, int a, int b){
-    if(a>N) return;
     node->s=a;
     node->e=b;
     if(a==b){
@@ -40,10 +39,11 @@ int get_segtree(Node* node, int a, int b){
 }
 int main(){
     scanf("%d%d",&N, &M);
-    for(int i=0; i<N; i++)
+    for(int i=0; i<N; i++){
         scanf("%d", arr+i);
+    }
     Node* root = new Node;
-    make_segtree(root,0,2<<17);
+    make_segtree(root,0,N-1);
     while(M--){
         int a, b;
         scanf("%d%d",&a, &b);
