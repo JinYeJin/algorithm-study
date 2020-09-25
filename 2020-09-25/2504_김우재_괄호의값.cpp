@@ -1,18 +1,22 @@
-int ans = 0;
+
 int recursive(string str){
-    if(str == ")") return 2;
-    if(str == "]") return 3;
-    char temp = str[0]; // 짜른 값
-    string next = str.substr(1);
-    if(recursive(next) == 2){
-        if(temp == '(') ans += 2;
-        else ans += 2*3;
-    }
-    if(recursive(next) == 3){
-           if(temp == '[') ans += 3;
-           else ans += 2*3;
+    if(str == "") return 1;
+    int ans = 0;
+    stack<pair<int, char>>s;
+    for(int i=0; i < str.size(); i++){
+        char ch = str[i];
+        if(ch == '(' || ch == '['){ s.push(make_pair(i, ch));}
+        else if(!s.empty() && s.top().second == '(' && ch == ')'){
+            ans += 2*recursive(str.substr(s.top().first, i - s.top().first));
+            s.pop();
+        }
+        else if(!s.empty() && s.top().second == '[' && ch == ']'){
+            ans += 3*recursive(str.substr(s.top().first, i - s.top().first));
+            s.pop();
+        }
     }
     return ans;
+
 }
 
 int main() {
@@ -28,6 +32,9 @@ int main() {
         else if(ch == ')' || ch == ']' ) s.push(ch);
     }
     if(!s.empty()) {cout << 0 << "\n"; return 0;}
+    
+    cout << recursive(str) << "\n";
+    
     
     return 0;
 }
