@@ -3,40 +3,51 @@
 #include <stack>
 using namespace std;
 
+bool flag=0;
 int answer=0,num=1,m=0;
-int mul[30];
+int mul[100];
 stack<char> st;
 string S;
 int main(){
     cin.tie(NULL);ios::sync_with_stdio(false);
-    for(int i=0;i<30;i++) mul[i]=1;
     cin>>S;
-    if(S[0]==')' or S[0]==']') cout<<0;
     for(int i=0;i<S.size();i++){
         if(S[i]=='('){
             st.push('(');
-            mul[m++]=1;
+            mul[m++]=2;
+            flag=1;
         }
-        if(S[i]=='['){
+        else if(S[i]=='['){
             st.push('[');
-            mul[m++]=1;
+            mul[m++]=3;
+            flag=1;
         }
-        if(S[i]==')' and st.top()=='('){
-            for(int i=0;i<st.size();i++){
-                mul[i]*=2;
-            }
-            answer+=mul[--m];
-            st.pop();
+        else if((S[i]==')' or S[i]==']') and st.empty()){
+            st.push(S[i]);
+            break;
         }
-        if(S[i]==']' and st.top()=='['){
-            for(int i=0;i<st.size();i++){
-                mul[i]*=3;
-            }
-            answer+=mul[--m];
+        else if(S[i]==')' and st.top()=='('){
+            int a=2;
             st.pop();
+            if(flag){
+                for(int i=0;i<st.size();i++) a*=mul[i];
+                answer+=a;
+            }
+            m--;
+            flag=0;
+        }
+        else if(S[i]==']' and st.top()=='['){
+            int a=3;
+            st.pop();
+            if(flag){
+                for(int i=0;i<st.size();i++) a*=mul[i];
+                answer+=a;
+            }
+            m--;
+            flag=0;
         }
     }
-    if(st.empty()) printf("%d",answer);
-    else puts("0");
+    if(st.empty()) cout<<answer;
+    else cout<<0;
     return 0;
 }
