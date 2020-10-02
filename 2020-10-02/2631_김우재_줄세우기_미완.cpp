@@ -29,7 +29,5 @@ int main() {
     
     cout << d[n-1] << " ";
     
-    
-    
     return 0;
 }
