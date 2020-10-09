@@ -20,7 +20,7 @@ int main(){
     
     d[2][2][1] = 1; // 12
     d[2][1][2] = 1; // 21
-    
+        
     for(int i=2; i <= n; i++){
         for(int j=1; j <= i; j++){
             for(int k=1; k <= i; k++){
