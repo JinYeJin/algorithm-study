@@ -21,16 +21,14 @@ bool boundary(int x, int y){
     return x >= 0 && x < N && y >= 0 && y < M;
 }
 
-void dfs(int _x, int _y)
-{
-    if (out[_x][_y] == 0) { out[_x][_y] = 1;}
+void dfs(int _x, int _y){
+    if(out[_x][_y] == 0) out[_x][_y] = 1;
 
-    for (int i = 0; i < 4; i++)
-    {
+    for(int i = 0; i < 4; i++){
         int mx = _x + dx[i];
         int my = _y + dy[i];
  
-        if (boundary(mx, my) && cheese[mx][my] == 0 && out[mx][my] == 0)
+        if(boundary(mx, my) && cheese[mx][my] == 0 && out[mx][my] == 0)
             dfs(mx, my);
     }
     return;
@@ -58,11 +56,14 @@ int main(){
         }
     }
  
+
+    // flag는 1치즈가 한번도 녹지 않았을 때 false가 된다
     while(flag){
         if(num_of_cheese) prev_num = num_of_cheese;
         flag = 0;
         memset(out, 0, sizeof(out));
 
+        // out 배열 업데이트, 가장자리는 어차피 항상 비어있음
         dfs(0, 0);
 
         for(int i = 1; i < N - 1; i++){
