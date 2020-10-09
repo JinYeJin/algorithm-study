@@ -1,3 +1,4 @@
+/*
 세그먼트 트리 정리 https://www.crocus.co.kr/648
 */
 #include <stdio.h>
@@ -17,7 +18,7 @@ ll tree[4 * LM];
 ll update(ll idx, ll val, ll node, ll start, ll end) {
     if (end < idx || idx < start)
         return tree[node];
-    if (start == end) // 단말 노드(Leaf Node)인 경우
+    if (start == end)
         return tree[node] = val;
  
     ll mid = (start + end) >> 1;
