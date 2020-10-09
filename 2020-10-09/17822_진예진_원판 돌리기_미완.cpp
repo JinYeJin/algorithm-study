@@ -1,5 +1,5 @@
 /*
-[백준 17822 원판 돌리기] www.acmicpc.net/problem/17822
+[백준 17822] www.acmicpc.net/problem/17822
 */
 #include <stdio.h>
 #include <iostream>
@@ -40,13 +40,12 @@ int remove_number(int x, int y){
         else if(nx == M+1) nx = nx % M;
 
         // 인접한 수가 같으면
-        // if(!visited[ny][nx] && circular[y][x] == circular[ny][nx]){
-        if(!visited[ny][nx] && circular[y][x] != 0 && circular[y][x] == circular[ny][nx]){
+        if(!visited[ny][nx] && circular[y][x] == circular[ny][nx]){
             ret++;
+            circular[y][x] = 0;
             visited[y][x] = true;
-
-            if(visited[ny][nx] == false)
-                ret += remove_number(nx, ny);
+            ret += remove_number(nx, ny);
+            circular[ny][nx] = 0;
             visited[ny][nx] = true;
         }
     }
@@ -54,15 +53,12 @@ int remove_number(int x, int y){
 }
 
 int main(){
-    FILE *stream =freopen("S2\\18\\input\\17822.txt", "r", stdin);
-    if(!stream) perror("freopen");
-
     ios_base::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
 
 
-    cin >> N >> M >> T;
+    cin >> M >> N >> T;
 
     for(int i = 1; i <= N; i++){
         for(int j = 1; j <= M; j++){
@@ -84,23 +80,11 @@ int main(){
             for(int x = 1; x <= M; x++){
                 memset(visited, false, sizeof(visited));
                 sum += circular[y][x];
-
+                if(circular[y][x] != 0) 
+                    num++;
                 // 이미 방문한 곳 검사
                 if(circular[y][x] != 0)
                     removed += remove_number(x, y);
-            }
-            for(int k = 0; k < N; k++){
-                for(int l = 0; l < N; l++){
-                    if(visited[k][l] == true)
-                        circular[k][l] = 0;
-                }
-            }
-        }
-
-        for(int y = 1; y <= N; y++){
-            for(int x = 1; x < M; x++){
-                if(circular != 0)
-                    num++;
             }
         }
 
