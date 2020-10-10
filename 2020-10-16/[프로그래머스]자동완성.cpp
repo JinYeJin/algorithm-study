@@ -32,7 +32,7 @@ void DFS(vector<string>::iterator b,vector<string>::iterator e, int idx){
     }
 }
 int solution(vector<string> words) {
-    sort(words_ad);
+    sort(words.begin(),words.end());
     vector<string>::iterator it=words.begin();
     while(it!=words.end()){
         auto lower=lower_bound(words.begin(),words.end(),it->substr(0,1)), 
