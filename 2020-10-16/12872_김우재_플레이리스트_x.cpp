@@ -1,3 +1,6 @@
+/*
+    백준 인강 -> 스터디때 설명 
+*/
 #include <iostream>
 using namespace std;
 int n,m,p;
