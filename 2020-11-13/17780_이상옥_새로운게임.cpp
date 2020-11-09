@@ -40,6 +40,8 @@ int go(){
                 int new_group=group_on_board[ny][nx];
                 groups[group]=new_group;
                 members[new_group].insert(members[new_group].end(), members[group].begin(), members[group].end());
+                members[group].clear();
+                if(members[new_group].size()>3) return i+1;
             }
             else{
                 members_xy[group]={nx,ny};
@@ -47,7 +49,6 @@ int go(){
             }
             x=nx, y=ny;
         }
-        for(int horse=0; horse<K; horse++) if(members[get_group(horse)].size()>3) return i+1;
     }
     return -1;
 }
