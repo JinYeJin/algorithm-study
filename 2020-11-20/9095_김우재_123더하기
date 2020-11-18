@@ -1,0 +1,26 @@
+```c++
+#include <iostream>
+#include <string>
+#include <queue>
+using namespace std;
+
+int d[12];
+int main(void) {
+    int t; cin >> t;
+    d[1] = 1;
+    d[2] = 2;
+    d[3] = 4;
+    d[4] = 7; // d[i] = d[i-1] + d[i-2] + d[i-3];
+    
+    for(int i=5; i < 12; i++){
+        d[i] = d[i-1] + d[i-2] + d[i-3];
+    }
+    while (t--) {
+        int request; cin >> request;
+        cout << d[request] << "\n";
+    }
+    
+    return 0;
+}
+
+```
