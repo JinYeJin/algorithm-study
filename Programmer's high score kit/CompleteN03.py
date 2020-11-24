@@ -5,7 +5,7 @@ def solution(brown, yellow):
 	end = brown//2+1
 	
 	while start<=end:
-		mid = (start+end)//2
+		mid = (start+end)//2 # 가로길이
 		if mid*(sum-mid) == area:
 			return [mid,sum-mid]
 		elif mid*(sum-mid) > area:
