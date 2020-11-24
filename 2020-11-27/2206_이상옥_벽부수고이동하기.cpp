@@ -1,40 +1,37 @@
 #include <iostream>
-#include <string.h>
 #include <queue>
 
 #define check(i,j) (0<=i && i<N && 0<=j && j<M)
 #define INF 987654321
+
 using namespace std;
 
-struct POINT{
-    int cnt, i, j;
-    bool b;
-};
 int N,M, di[]={1,-1,0,0}, dj[]={0,0,1,-1};
 char MAP[1000][1000];
 bool visited[2][1000][1000]={0};
 
 int BFS(){
-    queue<POINT> Q;
-    Q.push({1,0,0,0});
+    queue<pair<pair<int,int>,pair<int,int>>> Q;
+    Q.push({{0,1},{0,0}});
     while(Q.size()){
         auto q=Q.front(); Q.pop();
-        if(visited[q.b][q.i][q.j]) continue;
-        visited[1][q.i][q.j]=1;
-        if(q.b==0) visited[0][q.i][q.j]=1;
-        if(q.i==N-1 and q.j==M-1) return q.cnt;
+        int b=q.first.first, cnt=q.first.second, i=q.second.first, j=q.second.second;
+        if(visited[b][i][j]) continue;
+        visited[1][i][j]=1;
+        if(b==0) visited[0][i][j]=1;
+        if(i==N-1 and j==M-1) return cnt;
         for(int d=0;d<4;d++){
-            int ni=q.i+di[d], nj=q.j+dj[d];
+            int ni=i+di[d], nj=j+dj[d];
             if(check(ni,nj)){
-                if(MAP[ni][nj]=='0') Q.push({q.cnt+1,ni,nj,q.b});
-                else if(q.b==0) Q.push({q.cnt+1,ni,nj,1});
+                if(MAP[ni][nj]=='0') Q.push({{b,cnt+1},{ni,nj}});
+                else if(b==0) Q.push({{1,cnt+1},{ni,nj}});
             }
         }
     }
     return -1;
 }
 int main(){
-    cin.tie(NULL);ios::sync_with_stdio(false);
+    cin.tie(0);ios::sync_with_stdio(0);
     cin>>N>>M;
     for(int i=0;i<N;i++)
         for(int j=0;j<M;j++)
