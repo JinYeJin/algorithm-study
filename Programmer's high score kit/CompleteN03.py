@@ -8,8 +8,14 @@ def solution(brown, yellow):
 	while start<=end:
 		mid = (start+end)//2
 		if mid*(sum-mid) == area:
-			return [mid,sum-mid]
+			return [mid,int(sum-mid)]
 		elif mid*(sum-mid) > area:
 			start = mid+1
 		else: #mid*(sum-mid) < area
 			end = mid-1
+
+brown = 24
+yellow = 24 
+print(solution(brown, yellow))
+
+
