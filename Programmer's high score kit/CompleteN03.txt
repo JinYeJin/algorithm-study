@@ -1,0 +1,137 @@
+카펫 24NOV
+
+카펫의 노란색 부분은 중심부 부분이고 
+갈색부분은 주변부이다.
+
+노란색과 갈색 카펫의 격자 수가 주어졌을때 
+카펫이 가로, 세로 크기를 배열에 담아 결과값으로 return 한다.
+
+제한사항
+갈색 격자의 수 brown은 8 이상 5,000 이하인 자연수입니다.
+노란색 격자의 수 depthellow는 1 이상 2,000,000 이하인 자연수입니다.
+카펫의 가로 길이는 세로 길이와 같거나, 세로 길이보다 깁니다.
+입출력 예
+brown	depthellow	return
+10	2	[4, 3]
+8	1	[3, 3]
+24	24	[8, 6]
+출처
+
+
+# 문제이해
+중심부와 주변부의 크기가 주어졌을 때
+사각형의 가로,세로 크기를 결과값으로 반환
+
+
+# 문제해결방법
+주변부의 크기와 중심부의 크기 사이에 연관성
+
+
+- width*depth =brown+yellow
+  넓이
+- depth = brown/2 - width + 2
+  세로길이 
+- brown/2 +1 >= width >= brown/4 + 1
+  가로길이의 범위
+- width+depth = brown/2 +2
+  가로 세로 길이의 합
+
+
+
+2width+2(depth-2)=brown
+width+depth-2=brown/2
+- depth = brown/2 - width + 2
+
+
+width*(brown/2 - width + 2) =brown+yellow
+
+
+width - (brown/2 - width + 2) >= 0
+2width-brown/2 -2 >=0
+- brown/2 +1 >= width >= brown/4 + 1
+
+-depth = brown/2 - width + 2
+
+7(14-7)
+8(14-8)
+
+width*depth =brown+yellow
+
+
+brown/2 +2 <=0
+brown +4 <=0
+
+width*((brown/2+2)-width) = brown+yellow
+
+시작값 brown/2 +1  // width가 0이면 안되어서
+끝값  brown//4 +1
+width+depth = brown/2 +2
+
+width 와 depth의 크기가 비슷해질 수록 둘의 곱(너비)이 커진다.
+
+width * depth = target # targer = brown+yellow
+
+brown/2 +1
+brown//4 +1
+
+이진트리 이용 
+target보다 width * depth크면 width의 값을 범위 내에서 키우고 
+target이 width * depth보다 작으면 width의 값을 범위 내에서 줄인다.
+
+
+
+7 7
+
+시작 끝을 
+
+6 1
+5 2
+4 3
+
+13 1
+12 2
+11 3
+10 4
+9 5
+8 6
+7 7
+
+5 1
+4 2
+3 3
+
+
+
+
+
+
+
+
+
+
+width*(24-width) = 48
+
+
+
+
+
+
+2width+2width-4 
+4width-4 = brown
+
+
+# 실행
+
+
+# 회고 및 반성
+
+
+
+
+
+
+
+
+
+
+
