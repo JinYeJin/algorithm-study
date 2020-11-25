@@ -4,9 +4,8 @@ def solution(brown, yellow):
 	start =  brown//4+1# 가로길이 시작 숫자
 	end = brown//2+1
 	
-
 	while start<=end:
-		mid = (start+end)//2
+		mid = (start+end)//2 # 가로길이
 		if mid*(sum-mid) == area:
 			return [mid,int(sum-mid)]
 		elif mid*(sum-mid) > area:
