@@ -13,8 +13,4 @@ def solution(brown, yellow):
 		else: #mid*(sum-mid) < area
 			end = mid-1
 
-brown = 24
-yellow = 24 
-print(solution(brown, yellow))
-
 
