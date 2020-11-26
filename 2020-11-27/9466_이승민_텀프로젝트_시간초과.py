@@ -1,4 +1,6 @@
 # 텀 프로젝트
+# 학생 번호가 증가하면서 DFS를 진행하고 자기 자신 지목 또는 재귀를 진행하다가 자기 자신이 나오면 +1
+# 전체 학생 수 - 팀원이 된 학생 수
 
 import sys
 sys.setrecursionlimit(10000000)
@@ -29,15 +31,15 @@ def dfs(k, past, d):
     # 만약 처음 시작 학생 번호가 나오지 않으면 리턴
     if k != idx[0]:
         return
-    # 다음 학생으로 넘어감
-    dfs(k + 1, 0, 0)
+    # # 다음 학생으로 넘어감
+    # dfs(k + 1, 0, 0)
     return
 
 for i in range(n):
     l = int(input())
-    stu = [int(i) for i in input().split()]
-    stu.insert(0, 0)
-    dfs(1, 0, 0)
+    stu = [0] + [int(i) for i in input().split()]
+    for j in range(1, l + 1):
+        dfs(j, 0, 0)
     answer[i] = len(stu) - 1 - sum[0] # 실제 결과값은 길이 - 1 - 팀의 속한 학생 수
     sum[0] = 0
     
@@ -51,30 +53,27 @@ for i in range(n):
 # 8
 # 1 2 3 4 5 6 7 8
 
+# 7
 # 6
 # 2 3 4 5 6 2
-# output : 1
-
 # 5
 # 2 5 4 5 2
-# output : 3
-
 # 6
 # 1 3 4 3 2 6
-# output : 2
-
 # 13
 # 2 4 5 2 4 1 8 9 10 11 9 10 10
-# output : 8
-
 # 10
 # 2 5 7 1 6 8 8 3 5 10
-# output : 6
-
 # 10
 # 2 7 10 5 3 3 9 10 6 3
-# output : 8
-
 # 6
 # 2 1 1 2 6 3
-# output : 4
+
+# 답:
+# 1
+# 3
+# 2
+# 8
+# 6
+# 8
+# 4
