@@ -34,7 +34,7 @@ int main(){
         memset(visited,0,sizeof(visited));
         for(int i=1;i<=n;i++) cin>>pick[i];
         for(int i=1;i<=n;i++){
-            if(pick[i]){
+            if(pick[i]>0){
                 DFS(i);
             }
         }
