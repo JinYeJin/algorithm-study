@@ -5,6 +5,9 @@ def solution(brown, yellow):
 	end = brown//2+1
 	
 	while start<=end:
+    # 가로 세로가 가로가 세로보다 같거나 크다해서
+    #그걸 이용했습니다 
+    
 		mid = (start+end)//2 # 가로길이
 		if mid*(sum-mid) == area:
 			return [mid,int(sum-mid)]
@@ -12,5 +15,6 @@ def solution(brown, yellow):
 			start = mid+1
 		else: #mid*(sum-mid) < area
 			end = mid-1
+            
 
 
