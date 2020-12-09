@@ -1,5 +1,8 @@
 # 얼음이 어디까지 이어져있는지 확인하는 DFS
 def check_iceberg_blocks(area, visited, x, y):
+	import sys
+	sys.setrecursionlimit(100000)
+    
 	visited[x][y] = 1	
 	if x-1 >= 0 and visited[x-1][y] == 0 and area[x-1][y] != 0:
 		check_iceberg_blocks(area, visited, x-1, y)
