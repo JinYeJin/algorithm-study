@@ -14,6 +14,5 @@ b=b[::-1]
 for i in range(len(a)):
   if a[i]!=b[i]:
     c2+=1
-    print(a[i])
 
 print(min(c1, c2))
