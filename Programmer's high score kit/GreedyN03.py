@@ -13,13 +13,14 @@ def solution(number, k):
 							max_loop_times = stack_size
 					else:
 							max_loop_times = remained_count + stack_size - be_remained_len
-							
+					
+					last_num = None
 					for _ in range(max_loop_times):
 							if num_stack[-1] >= number[i] and stack_size < be_remained_len:
 									num_stack.append(number[i])
 									last_num = None
 									break
-							else:
+							elif num_stack[-1] < number[i]:
 									num_stack.pop()
 									last_num = True
 									
@@ -38,6 +39,18 @@ def solution(number, k):
 	
 	return ''.join(num_stack)
 
-k = 5
-number = "888877"
+k = 2
+number = "777"
 print(solution(number, k))
+
+'''
+# 다른이의 코드 
+def solution(number, k):
+	st = []
+	for i in range(len(number)):
+		while st and k > 0 and st[-1] < number[i]:
+			k -= 1
+			st.pop()
+		st.append(number[i])
+	return ''.join(st[:len(st)-k])
+'''
