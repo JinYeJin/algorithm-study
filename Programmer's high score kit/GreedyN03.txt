@@ -1,11 +1,15 @@
 큰 수 만들기 13DEC20 AM 1:41
 -이해 2"00
--해결방법 16"00(논리오류발견)+14"00+07"00방식 수정(메모리 덜 쓰도록), 37"00(논리오류발견)+30"00 (순회 수정)
--구현1 10"00(논리오류발견)
+-해결방법 16"00(논리오류발견)+14"00+07"00방식 수정(메모리 덜 쓰도록), 
+ 37"00(논리오류발견)+30"00 (순회 수정) +8"00
+ (팁 참조 이후) 15"00 + 55"00
+  
+-구현1 10"00(논리오류발견) 3"00(오류발견 중단) 10"00(정확도 90)
 -검증 6"00 +
--손코딩 7"00+
+-손코딩 7"00+30"(오류수정)
 -구현2 3"00 
 -검증 5"00
+-디버깅 1시간40분부터
 
 Description
 어떤 숫자에서 k개의 수를 제거했을 때 얻을 수 있는 가장 큰 숫자를 구하려 합니다.
@@ -108,7 +112,7 @@ expect=9899
 4798799, i=3, answer="9"
 4798799, i=4, answer="98"
 
---세번쨰 방법 14DEC PM 4:02
+--세번째 방법 14DEC PM 4:02
 이전 방법 수정 및 answer문자열의 각 자릿수 값과 answer문자열에 추가되어야할 숫자 개수, 
 number문자열에 순회해야할 자릿수의 개수를 감안하여 숫자를 answer문자열에 추가할지, 
 answer문자열을 초기화 혹은 부분삭제 한 뒤 추가할지를 결정
@@ -128,7 +132,7 @@ number[i-1] > number[i]
 어떻게 구조를 만들어야 깔끔하면서도 처리가 가능한가?
 
 greedy 
-쪼개를 수 있는 가장 작은 단위들로 문제를 나눈다.
+쪼갤 수 있는 가장 작은 단위들로 문제를 나눈다.
 가장 작은 단위들을 문제를 각자 해결하고서
 서로 합쳐나아간다.
 부분 해의 총합이 전체의 해답이 되게 한다.
@@ -144,12 +148,7 @@ number로 주어진 수의 자릿수를 앞뒤로 바꾸는 일은 없다.
 
 앞의 자릿수와 뒤의 자릿수 비교해서 앞의 자릿수가 클떄, 서로 같을 때
 
-
-
 answer 길이가 1이상이면
-
-
-
 
 
 앞 자릿수와 뒷 자릿수를 비교하여
@@ -177,10 +176,145 @@ number 문자열을 거의 끝까지 혹은 완전히 끝까지 순회해야 k�
 
 혹시 끝까지 순회하지 않고 알수 있는 다른 방법이 있는가?
 
+--
+다른이의 팁
+stack, greedy를 이용하여 풀어라
+
+
+몇 개를 뺄지
+지금 이 순간에 어떤걸 뺴는게 가장 이득일지
+이 순간의 기준은?
+앞자릿수가 뒤 자릿수보다 크면 이득
+앞자리 숫자와 뒷자리 숫자가 같으면?
+
+맨 앞에 수부터 스택에 담는다.
+그 다음 수가 스택에 있는 수보다 크면 앞에 숫자를 제거한다.
+스택의 순회는 ((number길이 - k) - 현재 스택 길이) < number문자열의 순회가 남은 원소 수
+위 조건이 맞는 동안 진행한다.
+스택의 마지막까지.
+"55559" k=4
+
+(number길이 - k) 조건과 number문자열 순회 조건을 같이 매칭하여
+반복문 돌리는 조건
+
+"99912" k=4
+이 경우 1개만 남으므로 가장 큰 수인 9만 있으면 된다.
+9가 아니라 8이하이면 끝까지 순회해야 알 수 있다.
+
 
 number	k	return
-4177252841	4	775841
+1924	2	94
+1231234	3	3234
+4177252841	4	
 
+"1924"  2
+stack 1
+stack 9
+stack 92
+stack 94
+(앞으로 number 문자열 순회 남은 것 + stack size)가 be_remained_len과 같으면
+나머지 숫자들을 전부 뒤에 이어붙인다.
+
+(앞으로 number 문자열 순회 남은 것)
+ex) 3개
+be_remained_len= 7
+stack_size=5
+((앞으로 number 문자열 순회 남은 것)+stack size) - be_remained_len 개수만큼
+stack 순회 단 스택이 맨 밑바닥까지만 가능
+
+
+- number 끝까지 순회한다 
+- 스택에 있는 값과 비교하여 push
+- 스택을 순회하는 기준은 number 순회까지 남은 개수, 현재 스택에 숫자 쌓인 개수,
+answer문자열(여기서는 스택)에 남아있어야하는 숫자의 개수 
+
+
+"19245"  2
+be_remained_len = 3
+1
+9
+9
+945 
+
+"19245"  3
+be_remained_len = 2
+1
+9
+9
+"99945"  1
+# stack에서 뺄 수 있는 개수
+스택 top에 있는 수와 number 원소값과 비교해서
+number 원소값이 더 크면 스택top에 있는 값을 빼고 
+number 원소값을 넣는다.
+
+- num_len = len(number)
+- be_remained_len = num_len -k 
+- num_stack = [ number[0] ]
+- i=1
+- while(i < num_len):
+num_stack size 비교 
+((앞으로 number 문자열 순회 남은 것)+stack size) - be_remained_len 
+num_len - i + len(num_stack) > be_remained_len
+stack 순회는 최대 stack 길이만큼만 가능 
+
+stack에 있는 숫자들을 최대 몇 개까지 비교할 수 있는가?
+
+"9876556879" 10개 중 4개 제거 6개 남길 수
+
+
+stack = [9]
+
+순회 9, stack 1, remain_len 6
+9>=8
+98
+순회 8, stack 2, remain_len 6
+8>=7
+987
+순회 7, stack 3, remain_len 6
+7>=6
+9876
+순회 6, stack 4, remain_len 6
+6>=5
+98765
+순회 5, stack 5, remain_len 6
+5>=5 
+987655
+순회 4, stack 6, remain_len 6
+5>=6 X 
+98765
+5>=6 X 
+98766
+순회 3, stack 5, remain_len 6
+순회+stack size - remain_len = 2
+최대 2개의 stack top과 비교 연산가능
+(현재 순회 중인 위치의 number element가 stack top값보다 크다면)
+if stack size <= 순회+stack size - remain_len 
+  max_loop_times = stack size
+else:
+  max_loop_times = 순회+stack size - remain_len 
+6>=8 X
+9876
+6>=8 X
+9878
+--
+98796
+6>=8
+9879
+
+6>=8
+
+--
+
+
+순회 2, stack 4, remain_len 6
+순회 남은 횟수 + stack size = remain_len
+
+9878+number[i:]
+
+if 순회 남은 횟수 + stack size 
+  for loop
+  if stack top > number_element
+    stack += number_element
 
 
 
