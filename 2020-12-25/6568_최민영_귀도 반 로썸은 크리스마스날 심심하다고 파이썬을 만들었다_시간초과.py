@@ -1,49 +1,40 @@
-import sys
-acc, pc = 0,0
-input = sys.stdin.readline
 while True:
-    memory = ["" for i in range(32)]
+    memory = []
     acc, pc = 0, 0
-    command_list = ['000', '001', '010', '011', '100', '101', '110', '111']
-
-    def convertToBinary(val):
-        change_val = val
-        binary = ''
-        while change_val > 0:
-            div = change_val // 2
-            mod = change_val % 2
-            change_val = div
-            binary += str(mod)
-        return binary[::-1]
 
     for _ in range(32):
-        memory[_] = input()
+        try:
+            memory.append(input())
+        # 입력 에러시 종료
+        except:
+            exit(0)
     while True:
-        command = memory[pc][0:3]
-        memory_loc = memory[pc][3:]
+        pos = memory[pc]
+        command = pos[0:3]
+        memory_loc = int(pos[3:], 2)
         pc = (pc + 1) % 32
-        if command == command_list[0]:
-            real_val = int(memory_loc, 2)
-            change_acc = convertToBinary(acc)
-            memory[real_val] = change_acc
-        elif command == command_list[1]:
-            real_loc = int(memory_loc, 2)
-            acc = int(memory[real_loc], 2)
-        elif command == command_list[2]:
+        if command == "000":
+            # 2진수로 변경시켜주는 형식
+            # 자체 함수는 시간을 너무 많이 먹어서 런타임 오류 발생
+            memory[memory_loc] = format(acc, '08b')
+        elif command == "001":
+            acc = int(memory[memory_loc], 2)
+        elif command == "010":
             if acc == 0:
-                pc = int(memory_loc, 2)
-        elif command == command_list[3]:
+                pc = memory_loc
+        elif command == "011":
             continue
-        elif command == command_list[4]:
-            acc -= 1
-        elif command == command_list[5]:
+        elif command == "100":
+            # -1 하고 조건문 쓰면 시간초과 발생해서 비트 연산 사용
+            acc += 255
+            acc %= 256
+        elif command == "101":
+            # 시간 초과 막기 위한 비트 연산
             acc += 1
-            if acc >= 256:
-                acc = 0
-        elif command == command_list[6]:
-            real_val = int(memory_loc, 2)
-            pc = real_val
-        elif command == command_list[7]:
-            print(convertToBinary(acc))
-            # memory.clear()
+            acc %= 256
+        elif command == "110":
+            pc = memory_loc
+        else:
+            # 2진수로 변환해서 출력
+            print(format(acc, '08b'))
             break
