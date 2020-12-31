@@ -170,7 +170,7 @@ memo에 있는지 확인
 
 없으면 square root를 구성하는 경우들 중에 최소횟수를 찾는다.
 
-a. n보다 작으면 가장 가까운 square_root를 구한다.
+a. n보다 작으면서 가장 가까운 square_root를 구한다.
   그 값을 min_square로 넣음
 b. (n보다 작으면 가장 가까운 square_root) -1
    한 값을 start에 저장
