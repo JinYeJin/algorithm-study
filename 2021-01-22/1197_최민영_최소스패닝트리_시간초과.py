@@ -22,7 +22,7 @@ for _ in range(e):
         heapq.heappush(d[b], (c, a))
 # print(d)
 # 프림 알고리즘 시작
-# 임이의 노드로 시작해도 됨
+# 임의의 노드로 시작해도 됨
 val = 0
 pos = 0
 dist = [float("inf")] * (v + 1)
