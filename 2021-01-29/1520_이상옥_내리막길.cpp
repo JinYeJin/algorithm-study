@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string.h>
+
+#define check(i,j) (0<=i and i<M and 0<=j and j<N)
+
 using namespace std;
 
 int N,M,map[500][500],dp[500][500], di[]={1,-1,0,0}, dj[]={0,0,-1,1};
 
-bool check(int i, int j){
-    return 0<=i and i<M and 0<=j and j<N;
-}
 int DFS(int i,int j){
     if(i==M-1 and j==N-1) return 1;
     if(dp[i][j]==-1){
