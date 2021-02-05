@@ -1,5 +1,6 @@
 /*
 [14501 백준] acmicpc.net/problem/14501
+#dp
 */
 #include <stdio.h>
 #include <iostream>
