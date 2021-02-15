@@ -1,31 +1,25 @@
-from sys import stdin
+N = int(input())
 
-input()
-N_cards = { int(x) for x in stdin.readline().split() }
-M = int(input())
-M_cards = [ int(x) for x in stdin.readline().split() ]
+fatorial_value = 1
+for x in range(N,0,-1):
+	fatorial_value *=  x
 
-N_cards = sorted(list(N_cards))
-N_len = len(N_cards)
-
-for i in range(M):
-	start = 0
-	end = N_len-1
-	target = M_cards[i]
-	
-	while start <= end:
-		mid = (start + end)//2
-		if target == N_cards[mid]:
-			break
-		elif target > N_cards[mid]:
-			start = mid + 1
-		else:
-			end = mid - 1
-	if target == N_cards[mid]:
-		print("1", end=" ")
+fatorial_value = list(str(fatorial_value))
+fatorial_len = len(fatorial_value)
+cnt = 0
+for i in range(fatorial_len-1,-1,-1):
+	if fatorial_value[i] == '0':
+		cnt += 1
 	else:
-		print("0", end=" ")
+		break
 
+print(cnt)
+
+
+# end_time = time.time()
+# runtime = end_time - start_time
+# print(f"{runtime=}")
+# print(f"{result=}")
 
 '''
 #다른이의 코드
