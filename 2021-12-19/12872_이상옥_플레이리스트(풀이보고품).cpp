@@ -9,7 +9,7 @@ int N,M,P;
 long DFS(int n, int p){
     if(dp[n][p]==-1){
         dp[n][p]=(DFS(n-1,p-1)*(N-n+1))%mod;
-        if(n>M) (dp[n][p]+=DFS(n,p-1)*max(0,n-M))%=mod;
+        if(n>M) (dp[n][p]+=DFS(n,p-1)(n-M)%=mod;
     }
     return dp[n][p];
 }
