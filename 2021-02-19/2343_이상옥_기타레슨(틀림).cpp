@@ -33,6 +33,6 @@ int main(){
     for(int i=0;i<N;i++){
         cin>>lesson[i];
     }
-    cout<<bisearch(0,100000);
+    cout<<bisearch(0,1000000001)<<'\n';
     return 0;
 }
