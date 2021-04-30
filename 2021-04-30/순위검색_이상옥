@@ -1,35 +1,26 @@
-import bisect
+from bisect import bisect_left
+
+DP=dict()
+
+def get_query(query,info):
+    if query not in DP.keys():
+        for i in range(4):
+            if query[i]!='-':
+                info=[j for j in info if j[i+1]==query[i]]
+        DP[query]=info
+    return DP[query]
+
 def solution(info, query):
-    bit = {'java':1,
-           'python':2,
-           'cpp':4,
-           'backend':8,
-           'frontend':16,
-           'junior':32,
-           'senior':64,
-           'pizza':128,
-           'chicken':256,
-           }
-    bit_union =[7,24,96,384]
     info = [i.split(' ') for i in info]
-    bit_info = []
-    for i in info:
-        bit_info.append([int(i[4]),bit[i[0]]+bit[i[1]]+bit[i[2]]+bit[i[3]]])
-    bit_info.sort()
+    for i in range(len(info)):
+        info[i]=[int(info[i][-1])]+info[i][:-1]
+    info.sort()
     query = [i.split(' and ') for i in query]
     for q in query:
         q.extend(q[-1].split(' '))
         del q[-3]
-        
     result=[]
     for q in query:
-        bit_q=0
-        cnt=0
-        for i in range(4):
-            if q[i]=='-': bit_q+=bit_union[i]
-            else: bit_q+=bit[q[i]]
-        for info in bit_info:
-            if info[0]>=int(q[4]) and (bit_q&info[1]==info[1]) :
-                cnt+=1
-        result.append(cnt)
+        info_q = get_query(tuple(q[:4]),info)
+        result.append(len(info_q)-bisect_left(info_q,[int(q[4])]))
     return result
