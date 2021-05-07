@@ -17,7 +17,10 @@ def bfs(i, j, check):
                     check[nx][ny] = 0
                     q.append((nx, ny))
                     array.append((nx, ny))
-    return array
+    if len(array) >= 4:
+        return array
+    else:
+        return []
 
 
 def puyo():
