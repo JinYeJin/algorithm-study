@@ -6,10 +6,10 @@ using namespace std;
 
 vector<int> child[1000001];
 int DP[2][1000001];
-int dfs(int pnt, bool visit, int n){
+int dfs(int pnt, bool is_early, int n){
     if(def==-1){
-        def=visit;
-        if(visit){
+        def=is_early;
+        if(is_early){
             for(int next:child[n]){
                 if(next==pnt) continue;
                 def+=min(dfs(n,1,next),dfs(n, 0,next));
