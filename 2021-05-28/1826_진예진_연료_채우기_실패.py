@@ -23,6 +23,7 @@ for n in range(1, N+2):
             continue
         if dp[i] + 1 < dp[n]:
             dp[n] = dp[i] + 1
+            # station[n][i]['fuel'] 로 남아있는 연료의 양을 계산하기
             station[n]['fuel'] = fuel - distance
 
 print(dp[N+1] if dp[N+1] != sys.maxsize else -1)
