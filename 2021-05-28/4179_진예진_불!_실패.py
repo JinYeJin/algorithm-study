@@ -66,7 +66,7 @@ for r in range(R):
 
 while not jihoon.empty():
     fire = burn()
-    if fire.empty():
+    if fire.empty(): # 지훈이가 나가지 못하는 경우 잘 생각해보기
         print('IMPOSSIBLE')
         exit(1)
 
