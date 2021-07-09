@@ -19,7 +19,7 @@ int main()
 		}
 		if(con.find(arr[k])!=con.end()) continue;
 		set<int> con_copy(con);
-		for (int i = k+1; i < K; i++) {
+		for (int i = k; i < K; i++) {
 			con_copy.erase(arr[i]);
 			if(con_copy.size()==1) break;
 		}
