@@ -1,0 +1,29 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<int> n2n[300000],ga;
+bool visited[300000];
+long long answer=0;
+long long DFS(int node){
+    visited[node]=1;
+    long long result=ga[node];
+
+    for(int next:n2n[node]){
+        if(!visited[next]){
+            result+=DFS(next);
+        }
+    }
+    answer+=abs(result);
+    return result;
+}
+
+long long solution(vector<int> a, vector<vector<int>> edges) {
+    ga=a;
+    for(auto edge:edges){
+        n2n[edge[0]].push_back(edge[1]);
+        n2n[edge[1]].push_back(edge[0]);
+    }
+    return DFS(0)?-1:answer;
+}
