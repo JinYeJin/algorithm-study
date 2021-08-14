@@ -1,10 +1,15 @@
 import queue
 max_y, max_x    = map(int, input().split())
 
-world = [input() for _ in range(max_y)]
+world = []
+world.append('W' * (max_x + 2))
+for _ in range(max_y):
+    world.append('W' + input() + 'W')
+world.append('W' * (max_x + 2))
 
+world = [input() for in range(max_y)]
 def bfs(x, y):
-    visited = [[False for _ in range(max_x)] for _ in range(max_y)]
+    visited = [[False for _ in range(max_x + 2)] for _ in range(max_y + 2)]
     q = queue.Queue()
     dx = [0, 1, 0, -1]
     dy = [1, 0, -1, 0]
@@ -16,14 +21,14 @@ def bfs(x, y):
         dist, cur_x, cur_y = q.get()
         for i in range(4):
             new_x, new_y = cur_x + dx[i], cur_y + dy[i]
-            if (new_x < max_x and new_y < max_y and not visited[new_y][new_x] and world[new_y][new_x] == 'L'):
+            if (not visited[new_y][new_x] and world[new_y][new_x] == 'L'):
                 visited[new_y][new_x] = True
                 q.put((dist + 1, new_x, new_y))
     return dist
 
 max_dist = 0
-for y in range(max_y):
-    for x in range(max_x):
+for y in range(max_y + 2):
+    for x in range(max_x + 2):
         if (world[y][x] == 'L'):
             max_dist = max(max_dist, bfs(x, y))
 print(max_dist)
